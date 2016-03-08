@@ -15,3 +15,5 @@ docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
        -i -e HOME=/app vladistan/node \
        npm run-script cov-jenkins
+
+/usr/local/sonar-runner/bin/sonar-runner
