@@ -26,18 +26,18 @@
   },
   "homepage": "http://git2prov.org/",
   "dependencies": {
-    "n3": "~0.2.3",
-    "http-proxy": "~1.0.2",
-    "express": "~3.4.8"
+    "n3": "~0.4.5",
+    "http-proxy": "~1.13.2",
+    "express": "~4.13.4"
   },
   "devDependencies": {
-        "istanbul": "0.3.0",
-        "mocha": "~1.21.4",
-        "should": "~4.0.0",
-        "sinon": "~1.10.3",
-        "jshint": "~2.1.10",
-        "supertest": "~0.13.0",
-        "xunit-file": "~0.0.5"
+        "istanbul": "0.4.3",
+        "mocha": "~2.4.5",
+        "should": "~8.2.2",
+        "sinon": "~1.17.3",
+        "jshint": "~2.9.1",
+        "supertest": "~1.2.0",
+        "xunit-file": "~0.0.9"
   },
   "scripts": {
         "test": "mocha --require test/support/env --reporter xunit-file -t 5000 --bail --check-leaks test/",
