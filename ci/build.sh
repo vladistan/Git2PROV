@@ -1,3 +1,6 @@
+#/bin/bash
+set -e
+
 NPM_VOLUME=git2.prov.npm.${GO_PIPELINE_NAME}
 NODEMOD_VOLUME=git2.prov.nodemod.${GO_PIPELINE_NAME}
 
