@@ -14,6 +14,10 @@ if [ x${DOCKER_VERSION} == x17178629171  ]; then
    mkdir -p node_modules
 fi
 
+if [ "x${UID}" == "x" ]; then
+   UID=500  
+fi
+
 echo "My UID : ${UID}"
 
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u 0:0 \
