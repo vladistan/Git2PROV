@@ -16,6 +16,8 @@ fi
 
 echo "Initial UID: ${UID}"
 
+export
+
 
 if [ "x${UID}" == "x" ]; then
    UID=500  
