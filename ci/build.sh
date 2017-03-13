@@ -7,14 +7,12 @@ NODEMOD_VOLUME=git2.prov.nodemod.${GO_PIPELINE_NAME}
 VOL_COMMANDS="-v $NPM_VOLUME:/app/.npm -v $NODEMOD_VOLUME:/app/node_modules"
 
 DOCKER_VERSION=$(docker --version | sed 's/[^0-9]//g')
-if [ x${DOCKER_VERSION} == x17178629171  ]; then
+if [ "x${DOCKER_VERSION}" == x17178629171  ]; then
    echo "Old Docker detected"
    VOL_COMMANDS=''
    mkdir -p .npm
    mkdir -p node_modules
 fi
-
-UID=$(id -u ${USER})
 
 echo "Initial UID: ${UID}"
 
