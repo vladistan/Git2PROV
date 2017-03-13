@@ -14,6 +14,8 @@ if [ x${DOCKER_VERSION} == x17178629171  ]; then
    mkdir -p node_modules
 fi
 
+UID=$(id -u ${USER})
+
 echo "Initial UID: ${UID}"
 
 export
