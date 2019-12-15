@@ -2,3 +2,6 @@ node_modules
 temp
 .idea
 coverage
+/.node-version
+/.scannerwork
+/.sonar
