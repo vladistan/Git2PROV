@@ -3,6 +3,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/vladistan/Git2PROV.svg)](https://coveralls.io/r/vladistan/Git2PROV)
 
 #Git2PROV
+
 Check out our [One-minute Git2PROV tutorial on Vimeo](http://vimeo.com/70980809)
 
 For an in-depth description of this tool and its creation, we refer to the following paper:
