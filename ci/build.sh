@@ -25,6 +25,7 @@ fi
 
 echo "My UID : ${UID}"
 
+echo Reset Permissions
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u 0:0 \
        $VOL_COMMANDS \
        -i -e HOME=/app vladistan/node \
@@ -35,23 +36,26 @@ docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u 0:0 \
        -i -e HOME=/app vladistan/node \
        chown -R $UID /app/node_modules
 
+echo Install NPM packs
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
        $VOL_COMMANDS \
        -i -e HOME=/app vladistan/node \
        npm install
 
+echo Test
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
        $VOL_COMMANDS \
        -i -e HOME=/app vladistan/node \
        npm run-script test
 
+echo Cover
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
        $VOL_COMMANDS \
        -i -e HOME=/app vladistan/node \
        npm run-script test-cov
 
 
-
+echo Convert Cover
 docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
        $VOL_COMMANDS \
        -i -e HOME=/app vladistan/node \
@@ -59,6 +63,7 @@ docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
 
 sed  -i.bak  's@^SF:/app/@SF:@' coverage/lcov.info
 
+echo Sonar Upload
 docker run \
     -u $UID:$UID \
     -e SONAR_HOST_URL=${SONAR_HOST_URL} \
