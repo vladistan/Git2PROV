@@ -63,11 +63,17 @@ docker run -w /app -v `pwd`/.m2:/.m2 -v `pwd`:/app -u $UID:$UID \
 
 sed  -i.bak  's@^SF:/app/@SF:@' coverage/lcov.info
 
-echo Sonar Upload
+
+# Get project key from SSM
+SONAR_PROJECT_KEY=git2prov
+SONAR_TOKEN=$(aws ssm get-parameter --name /ci/sonar/ga_token --with-decryption --query Parameter.Value --output text)
+
 docker run \
-    -u $UID:$UID \
-    -e SONAR_HOST_URL=${SONAR_HOST_URL} \
-    -e SONAR_LOGIN=${SONAR_LOGIN} \
-    -e SONAR_PASSWORD=${SONAR_PASSWORD} \
-    -i -v "$(pwd):/usr/src" \
-    sonarsource/sonar-scanner-cli
+    --rm \
+    -u "$(id -u go)" \
+    -e SONAR_HOST_URL="http://sonar.r4.v-lad.org:9000" \
+    -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=${SONAR_PROJECT_KEY}" \
+    -v "$(pwd):/usr/src" \
+    sonarsource/sonar-scanner-cli:5.0.1 \
+    -Dsonar.sources=/usr/src \
+    -Dsonar.login="${SONAR_TOKEN}"
